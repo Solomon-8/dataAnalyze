@@ -5,10 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,10 +54,10 @@ public class Data implements ReadData{
                 for (String i : result){
                     if (StringUtils.isNotEmpty(i)){
                         try {
-                            Constructor constructor = clazz.getConstructor(String.class);
+                            Constructor<T> constructor = clazz.getConstructor(String.class);
                             try {
-                                Object object = constructor.newInstance(i);
-                                list.add((T) object);
+                                T object = constructor.newInstance(i);
+                                list.add(object);
                             } catch (InstantiationException e) {
                                 e.printStackTrace();
                                 throw new RuntimeException("小可爱，你传入的类不能被实例化");
