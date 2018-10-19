@@ -41,10 +41,49 @@ import java.util.List;
  */
 public class Data implements ReadData{
 
-    public static void main(String[] args) throws FileNotFoundException {
-        Data stringData = new Data();
-        List<List<String>> a = stringData.readAsMatrix(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\email.txt"),String.class);
-        System.out.println(a);
+
+    @Override
+    public <T> List<List<T>> readAsMatrix(String path, Class<T> clazz) {
+        try {
+            FileInputStream inputStream = new FileInputStream(path);
+            return readAsMatrix(inputStream,clazz);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("小可爱，没有找到你的文件，确认你的路径是否正确");
+        }
+    }
+
+    @Override
+    public <T> List<List<T>> readAsMatrixWithProtectFirstColumn(String path, int position, Class<T> clazz) {
+        try {
+            FileInputStream inputStream = new FileInputStream(path);
+            return readAsMatrixWithProtectFirstColumn(inputStream,position,clazz);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("小可爱，没有找到你的文件，确认你的路径是否正确");
+        }
+    }
+
+    @Override
+    public <T> List<MatrixWithTime<T>> readAsMatrixWithTime(String path, String sign, SimpleDateFormat format, Class<T> clazz) {
+        try {
+            FileInputStream inputStream = new FileInputStream(path);
+            return readAsMatrixWithTime(inputStream,sign,format,clazz);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("小可爱，没有找到你的文件，确认你的路径是否正确");
+        }
+    }
+
+    @Override
+    public <T> List<MatrixWithTime<T>> readAsMatrixWithTimeProtectFirstColumn(String path, SimpleDateFormat format, String sign, int position, Class<T> clazz) {
+        try {
+            FileInputStream inputStream = new FileInputStream(path);
+            return readAsMatrixWithTimeProtectFirstColumn(inputStream,format,sign,position,clazz);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("小可爱，没有找到你的文件，确认你的路径是否正确");
+        }
     }
 
     @Override

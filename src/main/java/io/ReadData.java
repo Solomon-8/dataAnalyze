@@ -33,6 +33,44 @@ import java.util.List;
 public interface ReadData {
 
     /**
+     * 同名重载，为了传入的时候直接能传path
+     * @param path 文件路径
+     * @param clazz 见另一个重载方法
+     * @return 见另一个重载方法
+     */
+    <T> List<List<T>> readAsMatrix(String path,Class<T> clazz);
+
+
+    /**
+     * 同名重载，为了传入的时候直接能传path
+     * @param path 文件路径
+     * @param position 见另一个重载方法
+     * @param clazz 见另一个重载方法
+     * @return
+     */
+    <T> List<List<T>> readAsMatrixWithProtectFirstColumn(String path,int position,Class<T> clazz);
+
+    /**
+     * 同名重载，为了传入的时候直接能传path
+     * @param path 文件路径
+     * @param sign 见另一个重载方法
+     * @param format 见另一个重载方法
+     * @param clazz 见另一个重载方法
+     * @return 见另一个重载方法
+     */
+    <T> List<MatrixWithTime<T>> readAsMatrixWithTime(String path, String sign, SimpleDateFormat format, Class<T> clazz);
+
+    /**
+     * 同名重载，为了传入的时候直接能传path
+     * @param path 文件路径
+     * @param format 见另一个重载方法
+     * @param sign 见另一个重载方法
+     * @param position 见另一个重载方法
+     * @param clazz 见另一个重载方法
+     * @return 见另一个重载方法
+     */
+    <T> List<MatrixWithTime<T>> readAsMatrixWithTimeProtectFirstColumn(String path, SimpleDateFormat format, String sign, int position,Class<T> clazz);
+    /**
      * 原本数据是一个二维数组/矩阵
      * @param inputStream 要从那个文件读入的输入流
      * @param clazz 利用反射去寻找String类型的构造函数,因为数据分析常用的
