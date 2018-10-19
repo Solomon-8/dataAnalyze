@@ -47,8 +47,8 @@ public class Data implements ReadData{
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         List<List<T>> returnResult = new ArrayList<>();
         try {
-            String line = reader.readLine();
-            while (line != null){
+            String line;
+            while ((line = reader.readLine()) != null){
                 String[] result = line.split(" ");
                 List<T> list = new ArrayList<T>();
                 for (String i : result){
@@ -76,7 +76,6 @@ public class Data implements ReadData{
                     }
                 }
                 returnResult.add(list);
-                line = reader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
