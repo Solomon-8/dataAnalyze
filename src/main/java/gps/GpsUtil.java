@@ -59,6 +59,7 @@ public class GpsUtil implements Gps {
                 returnResult.set(j-1,countResult);
             }
             returnResult.remove(times);
+            matrixWithTimes = deepCopy(returnResult);
         }
         return returnResult;
     }
