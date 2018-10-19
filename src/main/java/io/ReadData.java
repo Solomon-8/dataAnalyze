@@ -1,6 +1,7 @@
 package io;
 
 import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -60,9 +61,10 @@ public interface ReadData {
      * @param clazz 利用反射去寻找String类型的构造函数,因为数据分析常用的
      *              Integer,Long,Double,Float都有String的构造参数，所以如果想要自定义类
      *              需要提供一个带有String的构造方法
+     * @param format 时间那一行所对应的format
      * @return 返回以时间为区分的数组
      */
-    <T> List<MatrixWithTime<T>> readAsMatrixWithTime(FileInputStream inputStream, String sign,Class<T> clazz);
+    <T> List<MatrixWithTime<T>> readAsMatrixWithTime(FileInputStream inputStream, String sign, SimpleDateFormat format, Class<T> clazz);
 
     /**
      * 同上，保护第一列
@@ -71,9 +73,11 @@ public interface ReadData {
      * @param clazz 利用反射去寻找String类型的构造函数,因为数据分析常用的
      *              Integer,Long,Double,Float都有String的构造参数，所以如果想要自定义类
      *              需要提供一个带有String的构造方法
+     * @param format 时间那一行所对应的format
+     * @param position 第一列最大占几位
      * @return 返回以时间为区分的数组
      */
-    <T> List<MatrixWithTime<T>> readAsMatrixWithTimeProtectFirstColumn(FileInputStream inputStream, String sign,Class<T> clazz);
+    <T> List<MatrixWithTime<T>> readAsMatrixWithTimeProtectFirstColumn(FileInputStream inputStream, SimpleDateFormat format, String sign, int position,Class<T> clazz);
 
 
 
