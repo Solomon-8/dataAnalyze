@@ -80,6 +80,14 @@ public interface ReadData {
     <T> List<MatrixWithTime<T>> readAsMatrixWithTimeProtectFirstColumn(FileInputStream inputStream, SimpleDateFormat format, String sign, int position,Class<T> clazz);
 
 
+    /**
+     * 根据MatrixWithTime的data中的第一列来获取想要的数据
+     * 用于从文件读取出来的数据二次加工
+     * @param matrixWithTimes 需要二次提取的数据
+     * @param target 目标数据的第一列的标志
+     * @return 返回提取出来的结果
+     */
+    <T> List<MatrixWithTime<T>> getDataByFirstColumn(List<MatrixWithTime<T>> matrixWithTimes,String target);
 
 
 

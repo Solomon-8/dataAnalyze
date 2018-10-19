@@ -9,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -91,9 +92,16 @@ public class Data implements ReadData{
         List<MatrixWithTime<T>> returnResult = new ArrayList<>();
         List<List<T>> data = new ArrayList<>();
         try {
-            String line;
+            String line = reader.readLine();
             MatrixWithTime<T> matrixWithTime = null;
-            while ((line = reader.readLine()) != null){
+            while (true){
+                if (line == null){
+                    if (matrixWithTime != null){
+                        matrixWithTime.setData(data);
+                        returnResult.add(matrixWithTime);
+                    }
+                    break;
+                }
                 if (line.contains(sign)){
                     //这一行包含sign，代表这一行代表着时间
                     if (matrixWithTime != null){
@@ -117,6 +125,7 @@ public class Data implements ReadData{
                     }
                     data.add(list);
                 }
+                line = reader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -131,9 +140,16 @@ public class Data implements ReadData{
         List<MatrixWithTime<T>> returnResult = new ArrayList<>();
         List<List<T>> data = new ArrayList<>();
         try {
-            String line;
+            String line = reader.readLine();
             MatrixWithTime<T> matrixWithTime = null;
-            while ((line = reader.readLine()) != null){
+            while (true){
+                if (line == null){
+                    if (matrixWithTime != null){
+                        matrixWithTime.setData(data);
+                        returnResult.add(matrixWithTime);
+                    }
+                    break;
+                }
                 if (line.contains(sign)){
                     //这一行包含sign，代表这一行代表着时间
                     if (matrixWithTime != null){
@@ -150,12 +166,34 @@ public class Data implements ReadData{
                 } else {
                     data.add(readProtectFirstColumn(line,position,clazz));
                 }
+                line = reader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("读取文件时发生错误，请检查文件格式");
         }
         return returnResult;
+    }
+
+    @Override
+    public <T> List<MatrixWithTime<T>> getDataByFirstColumn(List<MatrixWithTime<T>> matrixWithTimes, String target) {
+        List<MatrixWithTime<T>> result = new ArrayList<>();
+        for (MatrixWithTime<T> i : matrixWithTimes){
+            List<List<T>> data = i.getData();
+            for (List<T> j : data){
+                try {
+                    if (j.get(0).equals(target)){
+                        MatrixWithTime<T> matrixWithTime = new MatrixWithTime<>();
+                        matrixWithTime.setTime(i.getTime());
+                        matrixWithTime.setData(Collections.singletonList(j));
+                        result.add(matrixWithTime);
+                    }
+                } catch (ArrayIndexOutOfBoundsException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
     }
 
 
@@ -183,7 +221,13 @@ public class Data implements ReadData{
 
     private <T> List<T> readProtectFirstColumn(String line,int position,Class<T> clazz){
         List<T> list = new ArrayList<T>();
-        String fistColumn = line.substring(0,position);
+        String fistColumn;
+        try {
+            fistColumn = line.substring(0,position);
+        } catch (StringIndexOutOfBoundsException e){
+            e.printStackTrace();
+            throw new RuntimeException("第一列没有这么多数据,当前读到的这一行数据为:{" + line + "}");
+        }
         list.add(newInstance(clazz,fistColumn));
         line = line.substring(position);
         String[] result = line.split(" ");

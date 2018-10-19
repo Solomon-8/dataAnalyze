@@ -84,23 +84,27 @@ public class Test {
 //        String test = "solomon aa";
 //        System.out.println(test.substring(0,2));
 //        System.out.println(test.substring(2));
-        List<List<String>> a = new ArrayList<>();
-        List<String> list = new LinkedList<>();
-        list.add("123");
-        list.add("456");
-        list.add("789");
-        List<String> list1 = new LinkedList<>();
-        list1.add("asd");
-        a.add(list);
-        temp temp = new temp();
-        temp.a = a;
-        System.out.println(temp);
-        a = new ArrayList<>();
-        a.add(list1);
-        temp tm = new temp();
-        tm.a = a;
-        System.out.println(temp);
-        System.out.println(tm);
+//        List<List<String>> a = new ArrayList<>();
+//        List<String> list = new LinkedList<>();
+//        list.add("123");
+//        list.add("456");
+//        list.add("789");
+//        List<String> list1 = new LinkedList<>();
+//        list1.add("asd");
+//        a.add(list);
+//        temp temp = new temp();
+//        temp.a = a;
+//        System.out.println(temp);
+//        a = new ArrayList<>();
+//        a.add(list1);
+//        temp tm = new temp();
+//        tm.a = a;
+//        System.out.println(temp);
+//        System.out.println(tm);
+        List<String> a = new ArrayList<>();
+        a.add(null);
+        a.add(null);
+        System.out.println(a);
     }
 
      static class temp{
