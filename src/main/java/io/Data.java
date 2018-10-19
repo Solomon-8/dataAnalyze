@@ -48,7 +48,7 @@ public class Data implements ReadData{
     @Override
     public <T> List<List<T>> readAsMatrix(FileInputStream inputStream, Class<T> clazz) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        List<List<T>> returnResult = new ArrayList<List<T>>();
+        List<List<T>> returnResult = new ArrayList<>();
         try {
             String line = reader.readLine();
             while (line != null){
