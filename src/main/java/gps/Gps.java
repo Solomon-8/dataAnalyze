@@ -41,6 +41,12 @@ public interface Gps {
      */
     <T> List<MatrixWithTime<T>> calculateCycleSlipMatrix(List<MatrixWithTime<T>> matrixWithTimes,int time,int position);
 
-
+    /**
+     * 计算什么时刻发生了多少次周跳
+     * @param matrixWithTimes 计算过后的矩阵
+     * @param position 对应的哪一列
+     * @param strict 是否严格，如果选择严格就只宽容到四舍五入
+     */
+    void printCycleSlipAndCountTimes(List<MatrixWithTime<String>> matrixWithTimes,int position,boolean strict);
 
 }

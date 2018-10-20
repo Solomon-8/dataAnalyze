@@ -48,10 +48,11 @@ public class GpsUtil implements Gps {
             for (int j = times; j > 0; j--) {
                 MatrixWithTime<T> countResult = returnResult.get(j-1);
                 List<List<T>> countData = countResult.getData();
-                Double count = Double.parseDouble(String.valueOf(matrixWithTimes.get(j).getData().get(0).get(position))) - Double.parseDouble(String.valueOf(matrixWithTimes.get(j-1).getData().get(0).get(position)));
+                String count = String.valueOf(Double.parseDouble(String.valueOf(matrixWithTimes.get(j).getData().get(0).get(position))) - Double.parseDouble(String.valueOf(matrixWithTimes.get(j-1).getData().get(0).get(position))));
                 try {
                     countData.get(0).set(position, (T) count);
                     countResult.setData(countData);
+                    countResult.setTime(matrixWithTimes.get(j).getTime());
                 } catch (ClassCastException e){
                     e.printStackTrace();
                     throw new RuntimeException("计算周跳对应的数据类型应该是Double,实际传入的类型无法cast to Double");
@@ -63,6 +64,52 @@ public class GpsUtil implements Gps {
         }
         return returnResult;
     }
+
+    @Override
+    public void printCycleSlipAndCountTimes(List<MatrixWithTime<String>> matrixWithTimes, int position, boolean strict) {
+        int count = 1;
+        if (strict){
+            for (int i = 0; i < matrixWithTimes.size() - 3; i++) {
+                MatrixWithTime<String> a = matrixWithTimes.get(i);
+                MatrixWithTime<String> b = matrixWithTimes.get(i+1);
+                MatrixWithTime<String> c = matrixWithTimes.get(i+2);
+                MatrixWithTime<String> d = matrixWithTimes.get(i+3);
+                Double a1 = Double.parseDouble(a.getData().get(0).get(1));
+                Double b1 = Double.parseDouble(b.getData().get(0).get(1));
+                Double c1 = Double.parseDouble(c.getData().get(0).get(1));
+                Double d1 = Double.parseDouble(d.getData().get(0).get(1));
+            if (Math.round(b1/a1) == -3){
+                if (Math.round(c1/a1) == 3){
+                    if (Math.round(d1/a1) == -1){
+                        printCycleSlipPoint(a,b,c,d,count);
+                        count++;
+                    }
+                }
+            }
+            }
+        } else {
+            for (int i = 0; i < matrixWithTimes.size() - 3; i++) {
+                MatrixWithTime<String> a = matrixWithTimes.get(i);
+                MatrixWithTime<String> b = matrixWithTimes.get(i+1);
+                MatrixWithTime<String> c = matrixWithTimes.get(i+2);
+                MatrixWithTime<String> d = matrixWithTimes.get(i+3);
+                Double a1 = Double.parseDouble(a.getData().get(0).get(1));
+                Double b1 = Double.parseDouble(b.getData().get(0).get(1));
+                Double c1 = Double.parseDouble(c.getData().get(0).get(1));
+                Double d1 = Double.parseDouble(d.getData().get(0).get(1));
+                if (Math.round(b1/a1) == -3 || Math.round(b1/a1) == -2 || Math.round(b1/a1) == -4){
+                    if (Math.round(c1/a1) == 3 || Math.round(c1/a1) == 2 || Math.round(c1/a1) == 4){
+                        if (Math.round(d1/a1) == -1 || Math.round(d1/a1) == 0 || Math.round(d1/a1) == -2){
+                            printCycleSlipPoint(a,b,c,d,count);
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("总共发生的周跳次数:" + --count);
+    }
+
 
     public static <T> List<T> deepCopy(List<T> src) {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
@@ -86,6 +133,15 @@ public class GpsUtil implements Gps {
         for (MatrixWithTime<T> matrix :  matrixWithTimes){
             System.out.println(matrix.getData().get(0).get(position).toString());
         }
+    }
+
+    private void printCycleSlipPoint(MatrixWithTime a,MatrixWithTime b,MatrixWithTime c,MatrixWithTime d,int count){
+        System.out.println("第"+ count +"次周跳发生时刻:" + a.getTime());
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+        System.out.println("第" + count + "次周跳的四个点打印结束");
     }
 
 }
