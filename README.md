@@ -72,4 +72,24 @@ MatrixWithTime{time=Fri Apr 12 15:02:30 CST 2013, data=[[G 1, -168329.7270000204
 
 ```
 
+使用方式:
 
+将[dataAnalyze-1.0-SNAPSHOT.jar](https://raw.githubusercontent.com/Solomon-8/dataAnalyze/master/src/main/resources/jars/dataAnalyze-1.0-SNAPSHOT.jar)添加到你的项目依赖中就可以使用了。
+
+以IDEA为例，一种添加依赖的方式为：
+
+通过Modules的Dependencies添加：(推荐)
+1.打开 File -> Project Structure （Ctrl + Shift + Alt + S）
+
+![打开File -> Project Structure图片](http://dl2.iteye.com/upload/attachment/0104/8876/694f8b5c-70ac-3fec-8e89-bde24aa42424.png)
+
+2.单击 Modules -> Dependencies -> "+" -> "Jars or directories"
+
+![打开modules图片](http://dl2.iteye.com/upload/attachment/0104/8878/03160851-defd-3cbb-9334-792f1b1f7795.png)
+
+
+![添加jar图片](http://dl2.iteye.com/upload/attachment/0104/8880/d19fb3d1-0342-3e8c-bf1b-ec31006015cc.png)
+
+
+3.选择硬盘上的jar包
+4.Apply -> OK
