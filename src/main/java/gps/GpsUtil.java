@@ -107,6 +107,7 @@ public class GpsUtil implements Gps {
                 }
             }
         }
+        System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("总共发生的周跳次数:" + --count);
     }
 
