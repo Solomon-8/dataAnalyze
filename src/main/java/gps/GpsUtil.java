@@ -78,14 +78,13 @@ public class GpsUtil implements Gps {
                 Double b1 = Double.parseDouble(b.getData().get(0).get(position));
                 Double c1 = Double.parseDouble(c.getData().get(0).get(position));
                 Double d1 = Double.parseDouble(d.getData().get(0).get(position));
-            if (Math.round(b1/a1) == -3){
-                if (Math.round(c1/a1) == 3){
-                    if (Math.round(d1/a1) == -1){
-                        printCycleSlipPoint(a,b,c,d,count);
-                        count++;
+                if (Math.round(b1/a1) == -3){
+                    if (Math.round(c1/a1) == 3){
+                        if (Math.round(d1/a1) == -1){
+                            count = getCount(count, a, b, c, d, b1, c1, 1, b1 / d1, c1 / d1, 3, d1);
+                        }
                     }
                 }
-            }
             }
         } else {
             for (int i = 0; i < matrixWithTimes.size() - 3; i++) {
@@ -97,18 +96,23 @@ public class GpsUtil implements Gps {
                 Double b1 = Double.parseDouble(b.getData().get(0).get(position));
                 Double c1 = Double.parseDouble(c.getData().get(0).get(position));
                 Double d1 = Double.parseDouble(d.getData().get(0).get(position));
-                if (Math.round(b1/a1) == -3 || Math.round(b1/a1) == -2 || Math.round(b1/a1) == -4){
-                    if (Math.round(c1/a1) == 3 || Math.round(c1/a1) == 2 || Math.round(c1/a1) == 4){
-                        if (Math.round(d1/a1) == -1 || Math.round(d1/a1) == 0 || Math.round(d1/a1) == -2){
-                            printCycleSlipPoint(a,b,c,d,count);
-                            count++;
-                        }
-                    }
-                }
+                count = getCount(count, a, b, c, d, a1, b1, 3, c1/a1, d1/a1, 1, d1);
             }
         }
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("总共发生的周跳次数:" + --count);
+    }
+
+    private int getCount(int count, MatrixWithTime<String> a, MatrixWithTime<String> b, MatrixWithTime<String> c, MatrixWithTime<String> d, Double b1, Double c1, int i2, double v, double v2, int i3, Double d1) {
+        if (Math.round(c1/b1) == -i2){
+            if (Math.round(v) == 3){
+                if (Math.round(v2) == -i3){
+                    printCycleSlipPoint(a,b,c,d,count);
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 
