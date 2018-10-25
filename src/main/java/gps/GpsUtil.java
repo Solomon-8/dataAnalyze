@@ -74,10 +74,10 @@ public class GpsUtil implements Gps {
                 MatrixWithTime<String> b = matrixWithTimes.get(i+1);
                 MatrixWithTime<String> c = matrixWithTimes.get(i+2);
                 MatrixWithTime<String> d = matrixWithTimes.get(i+3);
-                Double a1 = Double.parseDouble(a.getData().get(0).get(1));
-                Double b1 = Double.parseDouble(b.getData().get(0).get(1));
-                Double c1 = Double.parseDouble(c.getData().get(0).get(1));
-                Double d1 = Double.parseDouble(d.getData().get(0).get(1));
+                Double a1 = Double.parseDouble(a.getData().get(0).get(position));
+                Double b1 = Double.parseDouble(b.getData().get(0).get(position));
+                Double c1 = Double.parseDouble(c.getData().get(0).get(position));
+                Double d1 = Double.parseDouble(d.getData().get(0).get(position));
             if (Math.round(b1/a1) == -3){
                 if (Math.round(c1/a1) == 3){
                     if (Math.round(d1/a1) == -1){
@@ -93,10 +93,10 @@ public class GpsUtil implements Gps {
                 MatrixWithTime<String> b = matrixWithTimes.get(i+1);
                 MatrixWithTime<String> c = matrixWithTimes.get(i+2);
                 MatrixWithTime<String> d = matrixWithTimes.get(i+3);
-                Double a1 = Double.parseDouble(a.getData().get(0).get(1));
-                Double b1 = Double.parseDouble(b.getData().get(0).get(1));
-                Double c1 = Double.parseDouble(c.getData().get(0).get(1));
-                Double d1 = Double.parseDouble(d.getData().get(0).get(1));
+                Double a1 = Double.parseDouble(a.getData().get(0).get(position));
+                Double b1 = Double.parseDouble(b.getData().get(0).get(position));
+                Double c1 = Double.parseDouble(c.getData().get(0).get(position));
+                Double d1 = Double.parseDouble(d.getData().get(0).get(position));
                 if (Math.round(b1/a1) == -3 || Math.round(b1/a1) == -2 || Math.round(b1/a1) == -4){
                     if (Math.round(c1/a1) == 3 || Math.round(c1/a1) == 2 || Math.round(c1/a1) == 4){
                         if (Math.round(d1/a1) == -1 || Math.round(d1/a1) == 0 || Math.round(d1/a1) == -2){

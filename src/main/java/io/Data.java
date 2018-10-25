@@ -215,13 +215,13 @@ public class Data implements ReadData{
     }
 
     @Override
-    public <T> List<MatrixWithTime<T>> getDataByFirstColumn(List<MatrixWithTime<T>> matrixWithTimes, String target) {
+    public <T> List<MatrixWithTime<T>> getDataByColumn(List<MatrixWithTime<T>> matrixWithTimes, String target,int position) {
         List<MatrixWithTime<T>> result = new ArrayList<>();
         for (MatrixWithTime<T> i : matrixWithTimes){
             List<List<T>> data = i.getData();
             for (List<T> j : data){
                 try {
-                    if (j.get(0).equals(target)){
+                    if (j.get(position).equals(target)){
                         MatrixWithTime<T> matrixWithTime = new MatrixWithTime<>();
                         matrixWithTime.setTime(i.getTime());
                         matrixWithTime.setData(Collections.singletonList(j));

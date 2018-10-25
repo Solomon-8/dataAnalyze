@@ -4,6 +4,7 @@ import gps.GpsUtil;
 import io.Data;
 import io.MatrixWithTime;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,8 +39,8 @@ public class GpsDemo {
     public static void main(String[] args) {
         String path = "C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\测绘数据-502392101a.13O";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("> yyyy  M dd HH mm ss.0000000  0 SS");
-        List<MatrixWithTime<String>> gpsData = data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(path,simpleDateFormat,">",3,String.class),"G 1");
-        List<MatrixWithTime<String>> matrix = gpsUtil.calculateCycleSlipMatrix(gpsData,4,1);
-        gpsUtil.printCycleSlipAndCountTimes(matrix,1,true);
+        List<MatrixWithTime<String>> gpsData = data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(path,simpleDateFormat,">",3,String.class),"G28",0);
+        List<MatrixWithTime<String>> matrix = gpsUtil.calculateCycleSlipMatrix(gpsData,4,2);
+        gpsUtil.printCycleSlipAndCountTimes(matrix,2,true);
     }
 }

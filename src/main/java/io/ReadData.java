@@ -122,10 +122,11 @@ public interface ReadData {
      * 根据MatrixWithTime的data中的第一列来获取想要的数据
      * 用于从文件读取出来的数据二次加工
      * @param matrixWithTimes 需要二次提取的数据
+     * @param position 需要提取的那一列,从0开始计数
      * @param target 目标数据的第一列的标志
      * @return 返回提取出来的结果
      */
-    <T> List<MatrixWithTime<T>> getDataByFirstColumn(List<MatrixWithTime<T>> matrixWithTimes,String target);
+    <T> List<MatrixWithTime<T>> getDataByColumn(List<MatrixWithTime<T>> matrixWithTimes, String target,int position);
 
 
 
