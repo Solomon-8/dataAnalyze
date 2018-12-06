@@ -2,12 +2,10 @@ package test;
 
 import gps.GpsUtil;
 import io.Data;
-import io.MatrixWithTime;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 /**
  * @author Solomon
@@ -51,11 +49,11 @@ public class DataTest {
 //        System.out.println(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class).size());
 //        System.out.println(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class));
 //        System.out.println(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\测绘数据-502392101a.13O"),simpleDateFormat,">",3,String.class));
-//        System.out.println(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1").size());
-//        System.out.println(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"));
-//        System.out.println(gpsUtil.calculateCycleSlipMatrix(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1));
-//        gpsUtil.printMatrix(gpsUtil.calculateCycleSlipMatrix(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1),1);
-        gpsUtil.printCycleSlipAndCountTimes(gpsUtil.calculateCycleSlipMatrix(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\测绘数据-502392101a.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1),1,true);
+//        System.out.println(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1").size());
+//        System.out.println(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"));
+//        System.out.println(gpsUtil.calculateCycleSlipMatrix(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1));
+//        gpsUtil.printMatrix(gpsUtil.calculateCycleSlipMatrix(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1),1);
+        gpsUtil.printCycleSlipAndCountTimes(gpsUtil.calculateCycleSlipMatrix(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\测绘数据-502392101a.13O"),simpleDateFormat,">",3,String.class),"G 1",2),4,1),1,true);
 //        for (int i = 0; i < matrix.size() - 3; i++) {
 //            MatrixWithTime<String> a = matrix.get(i);
 //            MatrixWithTime<String> b = matrix.get(i+1);
@@ -94,9 +92,9 @@ public class DataTest {
 //        }
 //        System.out.println(count);
 
-//        System.out.println(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1").size());
-//        System.out.println(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"));
-//        System.out.println(gpsUtil.calculateCycleSlipMatrix(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1));
-//        gpsUtil.printMatrix(gpsUtil.calculateCycleSlipMatrix(data.getDataByFirstColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1),1);
+//        System.out.println(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1").size());
+//        System.out.println(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"));
+//        System.out.println(gpsUtil.calculateCycleSlipMatrix(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1));
+//        gpsUtil.printMatrix(gpsUtil.calculateCycleSlipMatrix(data.getDataByColumn(data.readAsMatrixWithTimeProtectFirstColumn(new FileInputStream("C:\\Users\\Solomon\\Documents\\Tencent Files\\914573285\\FileRecv\\2018卫星导航系统第一次作业-周跳数据\\test.13O"),simpleDateFormat,">",3,String.class),"G 1"),4,1),1);
     }
 }

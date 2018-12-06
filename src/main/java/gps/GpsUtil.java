@@ -136,7 +136,7 @@ public class GpsUtil implements Gps {
 
     public <T> void printMatrix(List<MatrixWithTime<T>> matrixWithTimes,int position){
         for (MatrixWithTime<T> matrix :  matrixWithTimes){
-            System.out.println(matrix.getData().get(0).get(position).toString());
+            System.out.println(matrix.getTime() + "  " +matrix.getData().get(0).get(position).toString());
         }
     }
 
