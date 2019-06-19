@@ -278,7 +278,7 @@ public class Data implements ReadData{
         return list;
     }
 
-    private Date parseDate(String line,SimpleDateFormat format){
+    public static Date parseDate(String line,SimpleDateFormat format){
         Date date;
         try {
             date = format.parse(line);
