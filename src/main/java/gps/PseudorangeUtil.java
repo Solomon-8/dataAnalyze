@@ -203,7 +203,10 @@ public class PseudorangeUtil implements Pseudorange {
                             }
                         }
                         if (pseudorangeData.size() >= 4) {
-                            a.put("G" + gpsData[i + 1], Double.valueOf(pseudorangeData.get(3)));
+                            a.put("G" + gpsData[i + 1], Double.valueOf(pseudorangeData.get(2)));
+//                            a.put("G" + gpsData[i + 1], Double.valueOf(pseudorangeData.get(2)) * 2.5457277801631593 - Double.valueOf(pseudorangeData.get(3)) * 1.5457277801631593);
+//                            a.put("G" + gpsData[i + 1], Double.valueOf(pseudorangeData.get(3)) * 2.5457277801631593 - Double.valueOf(pseudorangeData.get(2)) * 1.5457277801631593);
+//                            a.put("G" + gpsData[i + 1], (Double.valueOf(pseudorangeData.get(2)) + Double.valueOf(pseudorangeData.get(3))) /2);
                         }
                         reader.readLine();
                     }

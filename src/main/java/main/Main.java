@@ -80,14 +80,18 @@ public class Main {
             int count = 0;
             int useCount = 0;
             List<PointWithErrorAndPesudorange> tmp = new ArrayList<>();
-            for (; useCount < 6 && count < matrix.getData().size(); ) {
+            for (; useCount < Integer.valueOf(args[0]) && count < matrix.getData().size(); ) {
                 Date time = matrix.getTime();
                 List<String> a = matrix.getData().get(count);
                 if (pseudorangeData.get(time).getPseudorange().get(a.get(0)) != null) {
-                    double aa = pseudorangeData.get(time).getPseudorange().get(a.get(0));
-                    PointWithErrorAndPesudorange pointA = new PointWithErrorAndPesudorange(Double.parseDouble(a.get(1)), Double.parseDouble(a.get(2)), Double.parseDouble(a.get(3)), Double.parseDouble(a.get(4)), aa);
-                    tmp.add(pointA);
-                    useCount++;
+                    try {
+                        double aa = pseudorangeData.get(time).getPseudorange().get(a.get(0));
+                        PointWithErrorAndPesudorange pointA = new PointWithErrorAndPesudorange(Double.parseDouble(a.get(1)), Double.parseDouble(a.get(2)), Double.parseDouble(a.get(3)), Double.parseDouble(a.get(4)), aa);
+                        tmp.add(pointA);
+                        useCount++;
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("!!!");
+                    }
                 }
                 count++;
             }
@@ -113,15 +117,28 @@ public class Main {
         }
 
 
-        List<Double> result = new ArrayList<>();
+
+//        for (List<PointWithErrorAndPesudorange> ls : pointWithErrorAndPesudoranges) {
+//
+//            for (PointWithErrorAndPesudorange point : ls){
+//                System.out.println(point);
+//            }
+//            System.out.println("======================================================");
+//        }
+
+//        for (List<PointWithErrorAndPesudorange> ls : pointWithErrorAndPesudoranges) {
+//            for (PointWithErrorAndPesudorange point : ls) {
+//                calcEarth(point);
+//            }
+//        }
+
         for (List<PointWithErrorAndPesudorange> ls : pointWithErrorAndPesudoranges) {
             Point point1 = pseudorangeUtil.calcPointPositionByPseudorange(ls);
 //            Point3D point3D = new Point3D(point1.getX(), point1.getY(), point1.getZ());
-            result.add(calc(point1));
+            Main_main.result.add(calc(point1));
             System.out.println(calc(point1));
         }
 
-        System.out.println(result);
 
 //        for (List<PointWithErrorAndPesudorange> list1 : pointWithErrorAndPesudoranges) {
 //            for (PointWithErrorAndPesudorange point : list1) {
@@ -134,6 +151,18 @@ public class Main {
 
     public static double calc(Point point) {
         return Math.sqrt(Math.pow(point.getX() + 2.67442764005491e+06, 2) + Math.pow(point.getY() - 3.75714307614075e+06, 2) + Math.pow(point.getZ() - 4.39152153176091e+06, 2));
+    }
+
+    public static void calcEarth(PointWithErrorAndPesudorange pointWithErrorAndPesudorange) {
+        double w = 7.292115e-05;
+        double t = 0.067;
+        double wt = w * t;
+        double need;
+        double dx = wt * pointWithErrorAndPesudorange.getX() * 10e2;
+        double dy = -wt * pointWithErrorAndPesudorange.getY() * 10e2;
+        double p = pointWithErrorAndPesudorange.getPesudorange();
+        need = ((pointWithErrorAndPesudorange.getX()+2.67442764005491e+06) * dx + (pointWithErrorAndPesudorange.getY()-3.75714307614075e+06) * dy) / p;
+        pointWithErrorAndPesudorange.setPesudorange(pointWithErrorAndPesudorange.getPesudorange() - need);
     }
 
 }
